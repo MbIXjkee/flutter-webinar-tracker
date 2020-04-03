@@ -41,9 +41,12 @@ class _TimerScreenState extends State<TimerScreen> {
     return Padding(
       padding: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.45),
       child: Container(
-          width: double.infinity,
-          child: FittedBox(
-              fit: BoxFit.fitWidth, child: SvgPicture.asset(shadowSvg))),
+        width: double.infinity,
+        child: SvgPicture.asset(
+          shadowSvg,
+          fit: BoxFit.fill,
+        ),
+      ),
     );
   }
 
