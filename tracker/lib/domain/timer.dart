@@ -25,7 +25,6 @@ class TimerModel {
 
   void _onTick(Timer timer) {
     _currentTimeSeconds++;
-    print(_currentTimeSeconds);
 
     _controller.sink.add(_currentTimeSeconds);
   }

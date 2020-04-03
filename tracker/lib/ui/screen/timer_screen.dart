@@ -78,8 +78,18 @@ class _TimerScreenState extends State<TimerScreen> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
-                        TimerButton(),
-                        TimerButton(),
+                        TimerButton(
+                          isPressed: _buttonState == ActiveButtonState.first,
+                          activatedColor: firstButtonEnabledColor,
+                          deactivatedColor: firstButtonDisabledColor,
+                          onPressed: _firstPressed,
+                        ),
+                        TimerButton(
+                          isPressed: _buttonState == ActiveButtonState.second,
+                          activatedColor: secondButtonEnabledColor,
+                          deactivatedColor: secondButtonDisabledColor,
+                          onPressed: _secondPressed,
+                        ),
                       ],
                     ),
                   ),
@@ -95,6 +105,25 @@ class _TimerScreenState extends State<TimerScreen> {
 
   Widget buildTimer() {
     return TimerWidget();
+  }
+
+  void _firstPressed() {
+    widget.timerBloc.startFirst();
+
+    _updateButtonState(ActiveButtonState.first);
+  }
+
+  void _secondPressed() {
+    widget.timerBloc.startSecond();
+
+    _updateButtonState(ActiveButtonState.second);
+  }
+
+  void _updateButtonState(ActiveButtonState state) {
+    setState(() {
+      _prevButtonState = _buttonState;
+      _buttonState = _prevButtonState == state ? ActiveButtonState.none : state;
+    });
   }
 }
 
