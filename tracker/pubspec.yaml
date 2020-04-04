@@ -14,6 +14,8 @@ dependencies:
 
   flutter_svg: ^0.17.3+1
 
+  intl: ^0.16.1
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -23,3 +25,12 @@ flutter:
 
   assets:
     - res/assets/
+
+  fonts:
+    - family: Montserrat
+      fonts:
+        - asset: res/assets/fonts/Montserrat-Regular.ttf
+        - asset: res/assets/fonts/Montserrat-Light.ttf
+          weight: 300
+        - asset: res/assets/fonts/Montserrat-Thin.ttf
+          weight: 100

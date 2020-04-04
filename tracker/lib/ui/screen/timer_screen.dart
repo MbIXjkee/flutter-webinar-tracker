@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:tracker/domain/timer.dart';
 import 'package:tracker/logic/timer_bloc.dart';
 import 'package:tracker/ui/res/assets.dart';
 import 'package:tracker/ui/res/colors.dart';
@@ -107,17 +108,31 @@ class _TimerScreenState extends State<TimerScreen> {
   }
 
   Widget buildTimer() {
-    return TimerWidget();
+    var timer = widget.timerBloc.current;
+    return StreamBuilder(
+      key: ObjectKey(timer),
+      stream: timer.onUpdateStream,
+      builder: (context, AsyncSnapshot<TimerDataProvider> snapshot) =>
+          TimerWidget(timerData: snapshot.data),
+    );
   }
 
   void _firstPressed() {
-    widget.timerBloc.startFirst();
+    if (_buttonState == ActiveButtonState.first) {
+      widget.timerBloc.stopFirst();
+    } else {
+      widget.timerBloc.startFirst();
+    }
 
     _updateButtonState(ActiveButtonState.first);
   }
 
   void _secondPressed() {
-    widget.timerBloc.startSecond();
+    if (_buttonState == ActiveButtonState.second) {
+      widget.timerBloc.stopSecond();
+    } else {
+      widget.timerBloc.startSecond();
+    }
 
     _updateButtonState(ActiveButtonState.second);
   }
