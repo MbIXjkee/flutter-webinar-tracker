@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:tracker/domain/timer.dart';
 import 'package:tracker/logic/timer_bloc.dart';
 import 'package:tracker/ui/res/assets.dart';
@@ -39,15 +38,23 @@ class _TimerScreenState extends State<TimerScreen> {
   }
 
   Widget buildShadow() {
-    return Padding(
-      padding: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.45),
-      child: Container(
-        width: double.infinity,
-        child: SvgPicture.asset(
-          shadowSvg,
-          fit: BoxFit.fill,
+    return Column(
+      children: <Widget>[
+        Expanded(
+          child: Container(),
+          flex: 45,
         ),
-      ),
+        Expanded(
+          child: Container(
+            child: Column(
+              children: <Widget>[
+                Image.asset(shadow, fit: BoxFit.fitWidth, width: double.infinity,)
+              ],
+            ),
+          ),
+          flex: 55,
+        )
+      ],
     );
   }
 

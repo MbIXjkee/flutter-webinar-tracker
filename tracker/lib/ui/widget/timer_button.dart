@@ -117,23 +117,44 @@ class _TimerButtonState extends State<TimerButton>
       child: Opacity(
         opacity: ((_controller.value - 0.55) / 0.45).clamp(0.0, 1.0),
         child: Center(
-          child: Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(_buttonRadius / 2),
-              gradient: RadialGradient(
-                colors: [
-                  shadowMainColor.withOpacity(0),
-                  shadowMainColor.withOpacity(0.6)
-                ],
-                stops: [
-                  0.8,
-                  1,
-                ],
+          child: Stack(
+            children: <Widget>[
+              Container(
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: shadowMainColor,
+                  gradient: RadialGradient(
+                    colors: [
+                      shadowMainColor.withOpacity(0.0),
+                      shadowMainColor.withOpacity(0.5),
+                    ],
+                    center: AlignmentDirectional(0.0, 0.5),
+                    focal: AlignmentDirectional(0.0, 0.1),
+                    focalRadius: 0.005,
+                    radius: 0.95,
+                    stops: [0.5, 1],
+                  ),
+                ),
               ),
-            ),
-            width: _buttonRadius,
-            height: _buttonRadius,
-          ),
+              Container(
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: shadowMainColor,
+                  gradient: RadialGradient(
+                    colors: [
+                      shadowTintColor.withOpacity(0.0),
+                      shadowTintColor.withOpacity(0.5),
+                    ],
+                    center: AlignmentDirectional(0.0, -0.5),
+                    focal: AlignmentDirectional(0.0, 0.1),
+                    focalRadius: 0.005,
+                    radius: 0.95,
+                    stops: [0.5, 1.0],
+                  ),
+                ),
+              ),
+            ],
+          )
         ),
       ),
     );
