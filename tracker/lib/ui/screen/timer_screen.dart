@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tracker/logic/timer_bloc.dart';
+import 'package:tracker/ui/res/assets.dart';
 
 /// Screen with timers
 class TimerScreen extends StatefulWidget {
@@ -24,7 +25,94 @@ class _TimerScreenState extends State<TimerScreen> {
   }
 
   Widget buildBody() {
-    return Container();
+    return Stack(
+      children: <Widget>[
+        _buildShadow(),
+        _buildContent(),
+      ],
+    );
+  }
+
+  Widget _buildShadow() {
+    return Container(
+      child: Column(
+        children: <Widget>[
+          Expanded(
+            flex: 45,
+            child: Container(),
+          ),
+          Expanded(
+            flex: 55,
+            child: Container(
+              child: Column(
+                children: <Widget>[
+                  Image.asset(
+                    shadow,
+                    fit: BoxFit.fitWidth,
+                    width: double.infinity,
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildContent() {
+    return Container(
+      child: Column(
+        children: <Widget>[
+          Expanded(
+            flex: 45,
+            child: Container(
+              child: Align(
+                alignment: Alignment.bottomCenter,
+                child: Padding(
+                  padding: const EdgeInsets.only(bottom: 20.0),
+                  child: _buildTimer(),
+                ),
+              ),
+            ),
+          ),
+          Expanded(
+            flex: 55,
+            child: Container(
+              child: Align(
+                alignment: Alignment.bottomCenter,
+                child: Padding(
+                  padding: const EdgeInsets.only(
+                    bottom: 100,
+                    right: 45,
+                    left: 45,
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Container(
+                        height: 100,
+                        width: 100,
+                        color: Colors.red,
+                      ),
+                      Container(
+                        height: 100,
+                        width: 100,
+                        color: Colors.red,
+                      )
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildTimer() {
+    return Text("Timer : here");
   }
 
   void _firstPressed() {
