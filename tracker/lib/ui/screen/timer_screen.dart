@@ -1,11 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:tracker/domain/timer.dart';
 import 'package:tracker/logic/timer_bloc.dart';
-import 'package:tracker/ui/res/assets.dart';
-import 'package:tracker/ui/res/colors.dart';
-import 'package:tracker/ui/widget/timer_button.dart';
-import 'package:tracker/ui/widget/timer_widget.dart';
 
 /// Screen with timers
 class TimerScreen extends StatefulWidget {
@@ -29,97 +24,7 @@ class _TimerScreenState extends State<TimerScreen> {
   }
 
   Widget buildBody() {
-    return Stack(
-      children: <Widget>[
-        buildShadow(),
-        buildContent(),
-      ],
-    );
-  }
-
-  Widget buildShadow() {
-    return Column(
-      children: <Widget>[
-        Expanded(
-          child: Container(),
-          flex: 45,
-        ),
-        Expanded(
-          child: Column(
-            children: <Widget>[
-              Image.asset(shadow, fit: BoxFit.fitWidth, width: double.infinity,)
-            ],
-          ),
-          flex: 55,
-        )
-      ],
-    );
-  }
-
-  Widget buildContent() {
-    return Column(
-      children: <Widget>[
-        Expanded(
-          child: Container(
-            height: 280,
-            width: double.infinity,
-            color: headColor,
-            child: Align(
-              alignment: Alignment.bottomCenter,
-              child: Padding(
-                padding: const EdgeInsets.only(bottom: 20.0),
-                child: buildTimer(),
-              ),
-            ),
-          ),
-          flex: 45,
-        ),
-        Expanded(
-          child: Container(
-            width: double.infinity,
-            child: Align(
-              alignment: Alignment.bottomCenter,
-              child: Padding(
-                padding: const EdgeInsets.only(bottom: 100.0),
-                child: Container(
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 45.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        TimerButton(
-                          isPressed: _buttonState == ActiveButtonState.first,
-                          activatedColor: firstButtonEnabledColor,
-                          deactivatedColor: firstButtonDisabledColor,
-                          onPressed: _firstPressed,
-                        ),
-                        TimerButton(
-                          isPressed: _buttonState == ActiveButtonState.second,
-                          activatedColor: secondButtonEnabledColor,
-                          deactivatedColor: secondButtonDisabledColor,
-                          onPressed: _secondPressed,
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ),
-          flex: 55,
-        )
-      ],
-    );
-  }
-
-  Widget buildTimer() {
-    var timer = widget.timerBloc.current;
-    return StreamBuilder(
-      key: ObjectKey(timer),
-      stream: timer.onUpdateStream,
-      builder: (context, AsyncSnapshot<TimerDataProvider> snapshot) =>
-          TimerWidget(timerData: snapshot.data),
-    );
+    return Container();
   }
 
   void _firstPressed() {
