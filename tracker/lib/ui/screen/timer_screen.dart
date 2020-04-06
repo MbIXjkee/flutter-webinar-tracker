@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tracker/logic/timer_bloc.dart';
 import 'package:tracker/ui/res/assets.dart';
+import 'package:tracker/ui/res/colors.dart';
+import 'package:tracker/ui/widget/timer-button.dart';
 
 /// Screen with timers
 class TimerScreen extends StatefulWidget {
@@ -90,16 +92,18 @@ class _TimerScreenState extends State<TimerScreen> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
-                      Container(
-                        height: 100,
-                        width: 100,
-                        color: Colors.red,
+                      TimerButton(
+                        isPressed: _buttonState == ActiveButtonState.first,
+                        activatedColor: firstButtonEnabledColor,
+                        deactivatedColor: firstButtonDisabledColor,
+                        onPressed: _firstPressed,
                       ),
-                      Container(
-                        height: 100,
-                        width: 100,
-                        color: Colors.red,
-                      )
+                      TimerButton(
+                        isPressed: _buttonState == ActiveButtonState.second,
+                        activatedColor: secondButtonEnabledColor,
+                        deactivatedColor: secondButtonDisabledColor,
+                        onPressed: _secondPressed,
+                      ),
                     ],
                   ),
                 ),
