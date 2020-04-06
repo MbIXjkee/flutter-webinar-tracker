@@ -23,9 +23,9 @@ class TimerButton extends StatefulWidget {
 
 class _TimerButtonState extends State<TimerButton>
     with SingleTickerProviderStateMixin {
-  static const double _buttonRadius = 90;
+  static const double _buttonSize = 90;
   static const double _buttonOuterShadowSize = 5;
-  static const double _indicatorRadius = 12;
+  static const double _indicatorSize = 12;
   static const double _indicatorBlurRadius = 4;
 
   AnimationController _controller;
@@ -70,11 +70,11 @@ class _TimerButtonState extends State<TimerButton>
               onTap: widget.onPressed,
               child: Container(
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(_buttonRadius / 2),
+                  borderRadius: BorderRadius.circular(_buttonSize / 2),
                   color: backgroundColor,
                 ),
-                height: _buttonRadius,
-                width: _buttonRadius,
+                height: _buttonSize,
+                width: _buttonSize,
                 child: Center(child: _buildIndicator()),
               ),
             ),
@@ -92,7 +92,7 @@ class _TimerButtonState extends State<TimerButton>
         child: Container(
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(
-                  _buttonRadius / 2 + _buttonOuterShadowSize),
+                  _buttonSize / 2 + _buttonOuterShadowSize),
               boxShadow: [
                 BoxShadow(
                   color: shadowMainColor,
@@ -105,8 +105,8 @@ class _TimerButtonState extends State<TimerButton>
                     blurRadius: _buttonOuterShadowSize,
                     offset: Offset(0, -_buttonOuterShadowSize))
               ]),
-          width: _buttonRadius,
-          height: _buttonRadius,
+          width: _buttonSize,
+          height: _buttonSize,
         ),
       ),
     );
@@ -175,7 +175,7 @@ class _TimerButtonState extends State<TimerButton>
       child: Container(
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(
-                _indicatorRadius / 2 + _indicatorBlurRadius),
+                _indicatorSize / 2 + _indicatorBlurRadius),
             boxShadow: [
               BoxShadow(
                 color: widget.activatedColor,
@@ -194,12 +194,12 @@ class _TimerButtonState extends State<TimerButton>
 
   Widget _buildIndicatorBulb(Color color) {
     return SizedBox(
-      width: _indicatorRadius,
-      height: _indicatorRadius,
+      width: _indicatorSize,
+      height: _indicatorSize,
       child: Container(
         decoration: BoxDecoration(
           color: color,
-          borderRadius: BorderRadius.circular(_indicatorRadius / 2),
+          borderRadius: BorderRadius.circular(_indicatorSize / 2),
         ),
       ),
     );
