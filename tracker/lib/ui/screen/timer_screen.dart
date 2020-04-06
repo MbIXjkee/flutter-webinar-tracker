@@ -45,12 +45,10 @@ class _TimerScreenState extends State<TimerScreen> {
           flex: 45,
         ),
         Expanded(
-          child: Container(
-            child: Column(
-              children: <Widget>[
-                Image.asset(shadow, fit: BoxFit.fitWidth, width: double.infinity,)
-              ],
-            ),
+          child: Column(
+            children: <Widget>[
+              Image.asset(shadow, fit: BoxFit.fitWidth, width: double.infinity,)
+            ],
           ),
           flex: 55,
         )
