@@ -1,9 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:tracker/domain/timer.dart';
 import 'package:tracker/logic/timer_bloc.dart';
 import 'package:tracker/ui/res/assets.dart';
 import 'package:tracker/ui/res/colors.dart';
 import 'package:tracker/ui/widget/timer-button.dart';
+import 'package:tracker/ui/widget/timer-widget.dart';
 
 /// Screen with timers
 class TimerScreen extends StatefulWidget {
@@ -116,7 +118,15 @@ class _TimerScreenState extends State<TimerScreen> {
   }
 
   Widget _buildTimer() {
-    return Text("Timer : here");
+    var currentTimer = widget.timerBloc.current;
+    return StreamBuilder(
+      key: ObjectKey(currentTimer),
+      stream: currentTimer.onUpdateStream,
+      builder: (context, AsyncSnapshot<TimerDataProvider> snapshot) =>
+          TimerWidget(
+        timerData: snapshot.data,
+      ),
+    );
   }
 
   void _firstPressed() {
